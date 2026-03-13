@@ -1,0 +1,132 @@
+version: 2
+
+models:
+  - name: stg_supplier_data
+    description: Cleaned supplier data with standardized formats and validated contact details.
+
+    columns:
+
+      - name: supplier_id
+        description: Unique identifier for supplier
+        tests:
+          - not_null
+          - unique
+
+      - name: supplier_name
+        description: Supplier name standardized to proper case
+        tests:
+          - not_null
+
+      - name: supplier_type
+        description: Type of supplier
+        tests:
+          - not_null
+
+      - name: website
+        description: Supplier website URL
+
+      - name: tax_id
+        description: Supplier tax identification number
+        tests:
+          - not_null
+
+      - name: year_established
+        description: Year supplier company was established
+
+      - name: credit_rating
+        description: Credit rating of supplier
+        tests:
+          - accepted_values:
+              arguments:
+                values: ['A','B','C','D','E']
+
+      - name: is_active
+        description: Supplier activity status
+        tests:
+          - not_null
+
+      - name: lead_time_days
+        description: Average lead time for orders in days
+
+      - name: minimum_order_quantity
+        description: Minimum order quantity required
+
+      - name: payment_terms
+        description: Payment terms agreed with supplier
+
+      - name: preferred_carrier
+        description: Preferred logistics carrier
+
+      - name: last_order_date
+        description: Date of last order placed with supplier
+
+      - name: last_modified_date
+        description: Last modification timestamp
+
+      - name: categories_supplied
+        description: Product categories supplied
+
+      - name: contact_person
+        description: Supplier contact person
+
+      - name: email
+        description: Raw email value
+
+      - name: valid_email
+        description: Validated supplier email
+
+      - name: phone_number
+        description: Raw cleaned phone number
+
+      - name: valid_phone
+        description: Validated phone number
+
+      - name: address
+        description: Supplier address
+
+      - name: contract_id
+        description: Supplier contract identifier
+        tests:
+          - not_null
+
+      - name: contract_start_date
+        description: Contract start date
+
+      - name: contract_end_date
+        description: Contract end date
+
+      - name: exclusivity
+        description: Whether supplier contract is exclusive
+
+      - name: renewal_option
+        description: Whether contract has renewal option
+
+      - name: on_time_delivery_rate
+        description: Percentage of deliveries on time
+
+      - name: defect_rate
+        description: Percentage of defective items
+
+      - name: average_delay_days
+        description: Average delivery delay
+
+      - name: response_time_hours
+        description: Average response time from supplier
+
+      - name: returns_percentage
+        description: Percentage of returned items
+
+      - name: quality_rating
+        description: Quality rating assigned to supplier
+        tests:
+          - accepted_values:
+              arguments:
+                values: ['excellent','good','average','poor']
+
+      - name: dbt_valid_from
+        description: Snapshot record start time
+        tests:
+          - not_null
+
+      - name: dbt_updated_at
+        description: Last snapshot update timestamp

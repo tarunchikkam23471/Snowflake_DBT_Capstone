@@ -1,0 +1,88 @@
+version: 2
+
+models:
+  - name: stg_product_data
+    description: "Cleaned and standardized product dataset from snapshot layer"
+
+    columns:
+
+      - name: product_id
+        description: "Unique identifier for each product"
+        tests:
+          - not_null
+          - unique
+
+      - name: product_name
+        description: "Normalized product name"
+        tests:
+          - not_null
+
+      - name: brand
+        description: "Product brand name"
+
+      - name: category
+        description: "Top level product category"
+        tests:
+          - not_null
+
+      - name: subcategory
+        description: "Second level product classification"
+
+      - name: product_line
+        description: "Product line within the subcategory"
+
+      - name: category_hierarchy
+        description: "Hierarchical product categorization"
+
+      - name: unit_price
+        description: "Selling price of the product"
+        tests:
+          - not_null
+
+      - name: cost_price
+        description: "Cost price of the product"
+        tests:
+          - not_null
+
+      - name: profit_margin_percentage
+        description: "Profit margin percentage calculated from unit_price and cost_price"
+
+      - name: stock_quantity
+        description: "Current stock available"
+        tests:
+          - not_null
+
+      - name: reorder_level
+        description: "Minimum stock level before reorder is triggered"
+        tests:
+          - not_null
+
+      - name: low_stock_flag
+        description: "Flag indicating whether stock is below reorder level"
+
+      - name: supplier_id
+        description: "Supplier providing the product"
+        tests:
+          - not_null
+
+      - name: is_featured
+        description: "Indicates if product is featured"
+
+      - name: launch_date
+        description: "Date when the product was launched"
+
+      - name: last_modified_date
+        description: "Last update timestamp for the product"
+
+      - name: warranty_period
+        description: "Warranty duration of the product"
+
+      - name: product_full_description
+        description: "Concatenation of name, description and technical specs"
+        tests:
+          - not_null
+
+      - name: dbt_valid_from
+        description: "Snapshot record start timestamp"
+        tests:
+          - not_null

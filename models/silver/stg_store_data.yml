@@ -1,0 +1,106 @@
+version: 2
+
+models:
+  - name: stg_store_data
+    description: "Silver layer cleaned and transformed store data with performance metrics."
+
+    columns:
+
+      - name: store_id
+        description: "Unique identifier for each store."
+        tests:
+          - not_null
+          - unique
+
+      - name: store_name
+        description: "Standardized store name in Pascal Case."
+        tests:
+          - not_null
+
+      - name: store_type
+        description: "Type of store such as flagship, outlet, department."
+        tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: ['flagship','outlet','department','express']
+
+      - name: region
+        description: "Store region."
+        tests:
+          - not_null
+
+      - name: valid_email
+        description: "Validated store email."
+        tests:
+          - not_null
+
+      - name: valid_phone
+        description: "Normalized store phone number."
+        tests:
+          - not_null
+
+      - name: manager_id
+        description: "Employee managing the store."
+        tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('stg_employee_data')
+                field: employee_id
+
+      - name: opening_date
+        description: "Date when store opened."
+        tests:
+          - not_null
+
+      - name: employee_count
+        description: "Total employees in the store."
+        tests:
+          - not_null
+
+      - name: size_sq_ft
+        description: "Store size in square feet."
+        tests:
+          - not_null
+
+      - name: store_size_category
+        description: "Derived size category of store."
+        tests:
+          - accepted_values:
+              arguments:
+                values: ['Small','Medium','Large']
+
+      - name: current_sales
+        description: "Current sales revenue."
+        tests:
+          - not_null
+
+      - name: sales_target
+        description: "Sales target for the store."
+        tests:
+          - not_null
+
+      - name: sales_target_achievement_percentage
+        description: "Percentage of sales target achieved."
+
+      - name: revenue_per_sq_ft
+        description: "Revenue generated per square foot."
+
+      - name: employee_efficiency
+        description: "Revenue generated per employee."
+
+      - name: performance_issue_flag
+        description: "Flag indicating if store performance is below 90% target."
+
+      - name: state
+        description: "Standardized state code."
+        tests:
+          - not_null
+
+      - name: country
+        description: "Country where store is located."
+        tests:
+          - accepted_values:
+              arguments:
+                values: ['USA']
