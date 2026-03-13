@@ -1,0 +1,77 @@
+version: 2
+
+models:
+  - name: stg_customer_data
+    description: Cleaned customer dataset from snapshot layer
+
+    columns:
+
+      - name: customer_id
+        description: Unique identifier of the customer
+        tests:
+          - not_null
+          - unique
+
+      - name: first_name
+        description: Customer first name
+        tests:
+          - not_null
+
+      - name: last_name
+        description: Customer last name
+        tests:
+          - not_null
+
+      - name: full_name
+        description: Full name of the customer
+        tests:
+          - not_null
+
+      - name: valid_email
+        description: Validated email address
+
+      - name: valid_phone
+        description: Validated phone number
+
+      - name: customer_segment
+        description: Segment derived from age
+        tests:
+          - accepted_values:
+              arguments:
+                values: ['Young','Middle-aged','Senior','Unknown']
+
+      - name: total_purchases
+        description: Number of purchases
+        tests:
+          - not_null
+
+      - name: total_spend
+        description: Total amount spent
+        tests:
+          - not_null
+
+      - name: income_bracket
+        description: Customer income category
+        tests:
+          - accepted_values:
+              arguments:
+                values: ['LOW','MEDIUM','HIGH']
+
+      - name: loyalty_tier
+        description: Loyalty program tier
+        tests:
+          - accepted_values:
+              arguments:
+                values: ['BRONZE','SILVER','GOLD','PLATINUM']
+
+      - name: preferred_communication
+        description: Preferred communication channel
+        tests:
+          - accepted_values:
+              arguments:
+                values: ['SMS','EMAIL','PHONE','MAIL']
+
+      - name: dbt_valid_from
+        description: Snapshot start timestamp
+        tests:
+          - not_null

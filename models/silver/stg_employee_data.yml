@@ -1,0 +1,92 @@
+version: 2
+
+models:
+  - name: stg_employee_data
+    description: "Cleaned and standardized employee dataset with performance metrics"
+
+    columns:
+
+      - name: employee_id
+        description: "Unique identifier for employee"
+        tests:
+          - not_null
+          - unique
+
+      - name: first_name
+        description: "Employee first name"
+        tests:
+          - not_null
+
+      - name: last_name
+        description: "Employee last name"
+        tests:
+          - not_null
+
+      - name: full_name
+        description: "Full name derived from first and last name"
+        tests:
+          - not_null
+
+      - name: valid_email
+        description: "Validated employee email address"
+
+      - name: valid_phone
+        description: "Validated employee phone number"
+
+      - name: date_of_birth
+        description: "Employee birth date"
+
+      - name: hire_date
+        description: "Employee hire date"
+        tests:
+          - not_null
+
+      - name: tenure_years
+        description: "Tenure of employee in years"
+
+      - name: department
+        description: "Employee department"
+        tests:
+          - not_null
+
+      - name: role_standardized
+        description: "Standardized employee role"
+        tests:
+          - not_null
+
+      - name: employment_status
+        description: "Current employment status"
+        tests:
+          - accepted_values:
+              arguments:
+                values: ['active', 'inactive']
+
+      - name: salary
+        description: "Employee salary"
+
+      - name: sales_target
+        description: "Sales target assigned to employee"
+
+      - name: current_sales
+        description: "Current sales achieved by employee"
+
+      - name: performance_rating
+        description: "Employee performance rating"
+
+      - name: target_achievement_percentage
+        description: "Percentage of sales target achieved"
+
+      - name: orders_processed
+        description: "Number of orders processed by employee"
+
+      - name: total_sales_amount
+        description: "Total sales amount processed by employee"
+
+      - name: store_id
+        description: "Store location where employee works"
+
+      - name: manager_id
+        description: "Manager supervising the employee"
+
+      - name: load_timestamp
+        description: "Timestamp when the record was loaded"

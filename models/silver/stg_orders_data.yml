@@ -1,0 +1,127 @@
+version: 2
+
+models:
+
+  - name: stg_order_items
+    description: "Cleaned order item level dataset"
+
+    columns:
+
+      - name: order_id
+        description: "Unique order identifier"
+        tests:
+          - not_null
+
+      - name: product_id
+        description: "Product purchased in the order"
+        tests:
+          - not_null
+
+      - name: quantity
+        description: "Number of units purchased"
+        tests:
+          - not_null
+
+      - name: unit_price
+        description: "Selling price of product"
+        tests:
+          - not_null
+
+      - name: cost_price
+        description: "Cost price of product"
+        tests:
+          - not_null
+
+      - name: item_discount_amount
+        description: "Discount applied to the item"
+
+      - name: order_date
+        description: "Date when order was placed"
+        tests:
+          - not_null
+
+      - name: customer_id
+        description: "Customer who placed the order"
+        tests:
+          - not_null
+
+      - name: store_id
+        description: "Store where order was placed"
+
+      - name: shipping_date
+        description: "Date order shipped"
+
+      - name: delivery_date
+        description: "Date order delivered"
+
+
+
+  - name: stg_orders_data
+    description: "Aggregated order level dataset with business metrics"
+
+    columns:
+
+      - name: order_id
+        description: "Unique order identifier"
+        tests:
+          - unique
+          - not_null
+
+      - name: customer_id
+        description: "Customer placing the order"
+        tests:
+          - not_null
+
+      - name: total_items
+        description: "Total number of products in order"
+        tests:
+          - not_null
+
+      - name: total_quantity
+        description: "Total quantity of items purchased"
+        tests:
+          - not_null
+
+      - name: items_revenue
+        description: "Revenue generated from items"
+
+      - name: total_cost
+        description: "Total cost of items"
+
+      - name: profit_amount
+        description: "Profit from the order"
+
+      - name: profit_margin_percentage
+        description: "Profit margin percentage"
+
+      - name: order_time_of_day
+        description: "Time of day order was placed"
+        tests:
+          - accepted_values:
+              arguments:
+                values: ['Morning', 'Afternoon', 'Evening', 'Night']
+
+      - name: order_week
+        description: "Order week derived from order_date"
+
+      - name: order_month
+        description: "Order month derived from order_date"
+
+      - name: order_quarter
+        description: "Order quarter derived from order_date"
+
+      - name: order_year
+        description: "Order year derived from order_date"
+
+      - name: processing_days
+        description: "Days between order and shipping"
+
+      - name: shipping_days
+        description: "Days between shipping and delivery"
+
+      - name: delivery_status
+        description: "Delivery performance classification"
+        tests:
+          - accepted_values:
+              arguments:
+                values: ['On Time', 'Delayed', 'Potentially Delayed', 'In Transit']
