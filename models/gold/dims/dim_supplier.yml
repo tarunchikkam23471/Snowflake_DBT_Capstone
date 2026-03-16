@@ -1,0 +1,43 @@
+version: 2
+
+models:
+  - name: dim_supplier
+    description: "Gold dimension table containing supplier master data for analytics."
+
+    columns:
+
+      - name: SupplierKey
+        description: "Surrogate key generated from supplier_id"
+        tests:
+          - unique
+          - not_null
+
+      - name: SupplierID
+        description: "Natural identifier for supplier"
+        tests:
+          - unique
+          - not_null
+
+      - name: Supplier_Name
+        description: "Name of the supplier"
+        tests:
+          - not_null
+
+      - name: ContactPerson
+        description: "Primary contact person for supplier"
+
+      - name: Email
+        description: "Validated supplier email"
+
+      - name: Phone
+        description: "Normalized supplier phone number"
+        tests:
+          - not_null
+
+      - name: Payment_Terms
+        description: "Supplier payment terms"
+
+      - name: Supplier_Type
+        description: "Type/category of supplier"
+        tests:
+          - not_null

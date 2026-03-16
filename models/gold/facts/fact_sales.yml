@@ -1,0 +1,71 @@
+version: 2
+
+models:
+  - name: fact_sales
+    description: "Fact table capturing individual product sales transactions."
+
+    columns:
+
+      - name: SalesKey
+        description: "Surrogate key for each sales record (order_id + product_id)."
+        tests:
+          - unique
+          - not_null
+
+      - name: OrderID
+        description: "Original order identifier."
+        tests:
+          - not_null
+
+      - name: CustomerKey
+        description: "Surrogate key referencing DIM_CUSTOMER."
+        tests:
+          - not_null
+
+      - name: ProductKey
+        description: "Surrogate key referencing DIM_PRODUCT."
+        tests:
+          - not_null
+
+      - name: DateKey
+        description: "Surrogate key referencing DIM_DATE."
+        tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('dim_date')
+                field: DateKey
+
+      - name: Quantity_Sold
+        description: "Quantity of product sold."
+        tests:
+          - not_null
+          
+      - name: Unit_Price
+        description: "Price per unit of product."
+        tests:
+          - not_null
+
+      - name: Total_Sales_Amount
+        description: "Total revenue generated for the item."
+        tests:
+          - not_null
+
+      - name: Cost_Amount
+        description: "Total cost of goods sold."
+
+      - name: Profit_Amount
+        description: "Profit calculated after cost, discounts, and shipping."
+
+      - name: Discount_Amount
+        description: "Discount applied to the item."
+
+      - name: Shipping_Cost
+        description: "Shipping cost allocated to the order."
+
+      - name: Sales_Channel
+        description: "Indicates whether the sale was online or in-store."
+        tests:
+          - accepted_values:
+              arguments:
+                values: ['Online', 'In-Store']

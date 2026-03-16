@@ -50,13 +50,15 @@ THEN LOWER(TRIM(email))
 ELSE NULL
 END AS valid_email,
 
-REGEXP_REPLACE(phone,'[^0-9]','') AS phone_number,
+REGEXP_REPLACE(phone,'[^0-9X]','') AS phone_number,
 
 CASE
-WHEN LENGTH(REGEXP_REPLACE(phone,'[^0-9]','')) BETWEEN 10 AND 15
-THEN REGEXP_REPLACE(phone,'[^0-9]','')
-ELSE NULL
-END AS valid_phone,
+        WHEN LENGTH(REGEXP_REPLACE(phone, '[^0-9X]', '')) = 10
+        THEN '+1' || REGEXP_REPLACE(phone, '[^0-9X]', '')
+        WHEN LENGTH(REGEXP_REPLACE(phone, '[^0-9X]', '')) = 11
+        THEN '+' || REGEXP_REPLACE(phone, '[^0-9X]', '')
+    ELSE NULL
+    END AS valid_phone,
 
 INITCAP(TRIM(address)) AS address,
 

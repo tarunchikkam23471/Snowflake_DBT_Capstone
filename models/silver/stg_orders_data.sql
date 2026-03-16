@@ -50,7 +50,17 @@ shipping_method,
 order_discount_amount,
 shipping_cost,
 tax_amount,
-total_amount
+total_amount,
+
+billing_street,
+billing_city,
+billing_state,
+billing_zip_code,
+
+shipping_street,
+shipping_city,
+shipping_state,
+shipping_zip_code
 
 FROM order_items
 

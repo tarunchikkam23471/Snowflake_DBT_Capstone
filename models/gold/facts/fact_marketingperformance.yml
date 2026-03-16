@@ -1,0 +1,36 @@
+version: 2
+
+models:
+  - name: fact_marketingperformance
+    description: Marketing campaign performance fact table containing campaign impact metrics.
+
+    columns:
+
+      - name: CampaignKey
+        description: Surrogate key referencing dim_marketingcampaign
+        tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('dim_marketingcampaign')
+                field: CampaignKey
+
+      - name: Total_Sales_Influenced_By_Campaign
+        description: Total sales influenced during campaign period
+        tests:
+          - not_null
+
+      - name: New_Customers_Acquired
+        description: Number of new customers acquired during the campaign
+        tests:
+          - not_null
+
+      - name: Repeat_Purchase_Rate
+        description: Percentage of customers who made repeat purchases
+        tests:
+          - not_null
+
+      - name: Return_On_Investment_For_Campaign
+        description: ROI metric for the campaign
+        tests:
+          - not_null

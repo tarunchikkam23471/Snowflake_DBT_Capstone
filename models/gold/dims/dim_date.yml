@@ -1,0 +1,63 @@
+version: 2
+
+models:
+  - name: dim_date
+    description: "Date dimension table used for time-based analytics across sales, inventory, and marketing."
+
+    columns:
+
+      - name: DateKey
+        description: "Surrogate key generated from full_date"
+        tests:
+          - not_null
+          - unique
+
+      - name: full_date
+        description: "Actual calendar date"
+        tests:
+          - not_null
+          - unique
+
+      - name: year
+        description: "Year extracted from the date"
+        tests:
+          - not_null
+
+      - name: quarter
+        description: "Quarter of the year (1-4)"
+        tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: [1, 2, 3, 4]
+
+      - name: month
+        description: "Month of the year"
+        tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: [1,2,3,4,5,6,7,8,9,10,11,12]
+
+      - name: week
+        description: "Week number of the year"
+        tests:
+          - not_null
+
+      - name: day_of_week
+        description: "Day number of the week"
+        tests:
+          - not_null
+
+      - name: holiday_flag
+        description: "Indicates if the date is a US holiday"
+        tests:
+          - not_null
+
+      - name: season
+        description: "Season derived from month"
+        tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: ['Winter','Spring','Summer','Fall']

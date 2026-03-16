@@ -1,0 +1,52 @@
+version: 2
+
+models:
+  - name: dim_employee
+    description: "Employee dimension containing employee attributes used for performance and sales analysis."
+
+    columns:
+
+      - name: EmployeeKey
+        description: "Surrogate key generated from employee_id"
+        tests:
+          - unique
+          - not_null
+
+      - name: EmployeeID
+        description: "Natural employee identifier"
+        tests:
+          - unique
+          - not_null
+
+      - name: Full_Name
+        description: "Full name of the employee"
+        tests:
+          - not_null
+
+      - name: Role
+        description: "Standardized employee role"
+        tests:
+          - not_null
+
+      - name: Work_Location
+        description: "Employee work location"
+
+      - name: Tenure
+        description: "Number of years the employee has worked"
+        tests:
+          - not_null
+
+      - name: Email_ID
+        description: "Validated employee email address"
+        tests:
+          - not_null
+
+      - name: Phone_Number
+        description: "Normalized employee phone number"
+        tests:
+          - not_null
+
+      - name: Performance_Metrics
+        description: "Employee performance rating"
+        tests:
+          - not_null

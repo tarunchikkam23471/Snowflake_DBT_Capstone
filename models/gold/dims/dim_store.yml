@@ -1,0 +1,75 @@
+version: 2
+
+models:
+  - name: dim_store
+    description: "Store dimension containing store location and business attributes."
+
+    columns:
+
+      - name: StoreKey
+        description: "Surrogate key generated from store_id"
+        tests:
+          - unique
+          - not_null
+
+      - name: StoreID
+        description: "Natural store identifier"
+        tests:
+          - unique
+          - not_null
+
+      - name: Store_Name
+        description: "Name of the store"
+        tests:
+          - not_null
+
+      - name: Address
+        description: "Full formatted address of the store"
+
+      - name: Street
+        description: "Street address of the store"
+        tests:
+          - not_null
+
+      - name: City
+        description: "City where the store is located"
+        tests:
+          - not_null
+
+      - name: State
+        description: "State where the store is located"
+        tests:
+          - not_null
+
+      - name: ZipCode
+        description: "Postal code of the store"
+        tests:
+          - not_null
+
+      - name: Country
+        description: "Country of the store"
+        tests:
+          - not_null
+
+      - name: Region
+        description: "Store region"
+        tests:
+          - not_null
+
+      - name: Store_Type
+        description: "Type of store (flagship, outlet, express, department)"
+        tests:
+          - not_null
+
+      - name: Opening_Date
+        description: "Date when store opened"
+        tests:
+          - not_null
+
+      - name: Size_Category
+        description: "Derived store size category"
+        tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: ['Small', 'Medium', 'Large']
