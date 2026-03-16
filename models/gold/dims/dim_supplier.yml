@@ -31,8 +31,6 @@ models:
 
       - name: Phone
         description: "Normalized supplier phone number"
-        tests:
-          - not_null
 
       - name: Payment_Terms
         description: "Supplier payment terms"

@@ -5,12 +5,15 @@ WITH date_spine AS (
         end_date="cast('2030-12-31' as date)"
     ) }}
 ),
+
 us_holidays AS (
     SELECT date_day
     FROM {{ ref('us_holidays') }}
 ),
+
 transformed AS (
     SELECT
+
         {{ dbt_utils.generate_surrogate_key(['d.date_day'])}} AS DateKey,
         d.date_day AS Full_Date,
         YEAR(d.date_day) AS year,
@@ -28,6 +31,7 @@ transformed AS (
             WHEN MONTH(d.date_day) IN (6, 7, 8) THEN 'Summer'
             WHEN MONTH(d.date_day) IN (9, 10, 11) THEN 'Fall'
         END AS season,
+        
     FROM date_spine d
     LEFT JOIN us_holidays h ON d.date_day = try_to_date(h.date_day)
 )

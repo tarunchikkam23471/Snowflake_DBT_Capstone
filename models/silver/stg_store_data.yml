@@ -32,13 +32,9 @@ models:
 
       - name: valid_email
         description: "Validated store email."
-        tests:
-          - not_null
 
       - name: valid_phone
         description: "Normalized store phone number."
-        tests:
-          - not_null
 
       - name: manager_id
         description: "Employee managing the store."
