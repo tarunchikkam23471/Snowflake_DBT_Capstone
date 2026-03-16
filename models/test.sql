@@ -1,1 +1,0 @@
-select hi from hello;
