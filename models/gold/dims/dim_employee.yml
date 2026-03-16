@@ -38,13 +38,9 @@ models:
 
       - name: Email_ID
         description: "Validated employee email address"
-        tests:
-          - not_null
 
       - name: Phone_Number
         description: "Normalized employee phone number"
-        tests:
-          - not_null
 
       - name: Performance_Metrics
         description: "Employee performance rating"

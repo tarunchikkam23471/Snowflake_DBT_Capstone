@@ -54,5 +54,8 @@ models:
       +schema: reporting
       +materialized: view
 
+    elementary:
+      +schema: elementary
+
 on-run-end:
   - "{{ log_run_results() }}"

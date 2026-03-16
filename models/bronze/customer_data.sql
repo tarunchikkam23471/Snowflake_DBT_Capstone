@@ -19,7 +19,6 @@ SELECT
     cust.value:preferred_communication::STRING    AS preferred_communication,
     cust.value:total_purchases::STRING            AS total_purchases,
     cust.value:total_spend::STRING                AS total_spend,
-
     cust.value:address.street::STRING             AS street,
     cust.value:address.city::STRING               AS city,
     cust.value:address.state::STRING              AS state,
