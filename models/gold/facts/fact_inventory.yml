@@ -1,0 +1,75 @@
+version: 2
+
+models:
+  - name: fact_inventory
+    description: "Fact table containing inventory metrics such as beginning inventory, purchased quantity, sold quantity, ending inventory, inventory valuation, turnover ratio, and supplier contribution."
+
+    columns:
+
+      - name: InventoryKey
+        description: "Surrogate primary key for the inventory fact table."
+        tests:
+          - not_null
+          - unique
+
+      - name: ProductKey
+        description: "Foreign key referencing dim_product."
+        tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('dim_product')
+                field: ProductKey
+
+      - name: DateKey
+        description: "Foreign key referencing dim_date."
+        tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('dim_date')
+                field: DateKey
+
+      - name: StoreKey
+        description: "Foreign key referencing dim_store."
+        tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('dim_store')
+                field: StoreKey
+
+      - name: SupplierKey
+        description: "Foreign key referencing dim_supplier."
+        tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('dim_supplier')
+                field: SupplierKey
+
+      - name: BeginningInventory
+        description: "Inventory level before purchases and sales."
+        tests:
+          - not_null
+
+      - name: PurchasedQuantity
+        description: "Quantity purchased to replenish stock."
+
+      - name: SoldQuantity
+        description: "Total quantity sold."
+
+      - name: EndingInventory
+        description: "Inventory level after purchases and sales."
+
+      - name: InventoryValue
+        description: "Monetary value of ending inventory."
+
+      - name: AverageInventory
+        description: "Average inventory during the period."
+
+      - name: StockTurnoverRatio
+        description: "Ratio of sold quantity to average inventory."
+
+      - name: SupplierContributionPercentage
+        description: "Percentage of total purchased quantity contributed by each supplier."

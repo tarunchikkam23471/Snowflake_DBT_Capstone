@@ -1,0 +1,50 @@
+version: 2
+
+models:
+  - name: dim_marketingcampaign
+    description: "Marketing campaign dimension used for campaign performance and sales attribution analytics."
+
+    columns:
+
+      - name: CampaignKey
+        description: "Surrogate key generated from campaign_id"
+        tests:
+          - unique
+          - not_null
+
+      - name: CampaignID
+        description: "Natural identifier for marketing campaign"
+        tests:
+          - unique
+          - not_null
+
+      - name: Target_Audience_Segment
+        description: "Segment of audience targeted by the campaign"
+        tests:
+          - not_null
+
+      - name: Budget
+        description: "Campaign budget amount"
+        tests:
+          - not_null
+
+      - name: Duration
+        description: "Campaign duration in days"
+        tests:
+          - not_null
+
+      - name: Actual_ROI
+        description: "ROI calculated from raw campaign data"
+
+      - name: Expected_ROI
+        description: "ROI calculated using revenue and cost"
+
+      - name: Start_Date
+        description: "Campaign start date"
+        tests:
+          - not_null
+
+      - name: End_Date
+        description: "Campaign end date"
+        tests:
+          - not_null

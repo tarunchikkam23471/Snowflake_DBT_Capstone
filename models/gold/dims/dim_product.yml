@@ -1,0 +1,60 @@
+version: 2
+
+models:
+  - name: dim_product
+    description: "Product dimension table containing product attributes used for sales and inventory analytics."
+
+    columns:
+
+      - name: ProductKey
+        description: "Surrogate key generated from product_id"
+        tests:
+          - unique
+          - not_null
+
+      - name: ProductID
+        description: "Natural product identifier"
+        tests:
+          - unique
+          - not_null
+
+      - name: Product_Name
+        description: "Name of the product"
+        tests:
+          - not_null
+
+      - name: Category
+        description: "Product category"
+        tests:
+          - not_null
+
+      - name: Subcategory
+        description: "Product subcategory"
+
+      - name: Brand
+        description: "Brand of the product"
+
+      - name: Color
+        description: "Product color"
+
+      - name: Size
+        description: "Product size"
+
+      - name: Unit_Price
+        description: "Selling price of the product"
+        tests:
+          - not_null
+
+      - name: Cost_Price
+        description: "Cost price of the product"
+        tests:
+          - not_null
+
+      - name: SupplierKey
+        description: "Foreign key referencing dim_supplier"
+        tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('dim_supplier')
+                field: SupplierKey

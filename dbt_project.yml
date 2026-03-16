@@ -49,3 +49,10 @@ models:
     gold:
       +schema: gold
       +materialized: table
+
+    reporting:
+      +schema: reporting
+      +materialized: view
+
+on-run-end:
+  - "{{ log_run_results() }}"

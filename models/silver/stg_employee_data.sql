@@ -13,7 +13,7 @@ SELECT
 
 TRIM(employee_id) AS employee_id,
 TRIM(manager_id) AS manager_id,
-TRIM(work_location) AS store_id,
+TRIM(work_location) AS work_location,
 
 
 INITCAP(TRIM(first_name)) AS first_name,
@@ -32,13 +32,9 @@ ELSE NULL
 END AS valid_email,
 
 
-REGEXP_REPLACE(phone,'[^0-9]','') AS phone_number,
+REGEXP_REPLACE(phone,'[^0-9X]','') AS phone_number,
 
-CASE
-WHEN LENGTH(REGEXP_REPLACE(phone,'[^0-9]','')) BETWEEN 10 AND 15
-THEN REGEXP_REPLACE(phone,'[^0-9]','')
-ELSE NULL
-END AS valid_phone,
+'+1' || REGEXP_REPLACE(REGEXP_REPLACE(phone, '[^0-9]', ''), '^1555', '') AS valid_phone,
 
 
 TRY_TO_DATE(date_of_birth) AS date_of_birth,

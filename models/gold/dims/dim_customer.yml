@@ -1,0 +1,74 @@
+version: 2
+
+models:
+  - name: dim_customer
+    description: "Customer dimension table with SCD Type 2 tracking for historical customer attributes."
+
+    columns:
+
+      - name: CustomerKey
+        description: "Surrogate key generated from customer_id and dbt_valid_from"
+        tests:
+          - unique
+          - not_null
+
+      - name: CustomerID
+        description: "Natural customer identifier"
+        tests:
+          - not_null
+
+      - name: Full_Name
+        description: "Full name of the customer"
+        tests:
+          - not_null
+
+      - name: Email
+        description: "Validated customer email address"
+
+      - name: Phone
+        description: "Normalized customer phone number"
+
+      - name: Street
+        description: "Street address"
+
+      - name: City
+        description: "City of residence"
+
+      - name: State
+        description: "State of residence"
+
+      - name: ZipCode
+        description: "Postal code"
+
+      - name: Country
+        description: "Country"
+
+      - name: Age
+        description: "Customer age"
+
+      - name: Income_Bracket
+        description: "Income classification"
+
+      - name: Occupation
+        description: "Customer occupation"
+
+      - name: Segment
+        description: "Customer segment derived from age"
+        tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: ['Young', 'Middle-aged', 'Senior', 'Unknown']
+
+      - name: Registration_Date
+        description: "Customer registration date"
+        tests:
+          - not_null
+
+      - name: dbt_valid_from
+        description: "Start timestamp of the SCD record"
+        tests:
+          - not_null
+
+      - name: dbt_valid_to
+        description: "End timestamp of the SCD record (NULL for current record)"
